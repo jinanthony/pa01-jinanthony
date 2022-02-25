@@ -73,12 +73,12 @@ int main(int argv, char** argc){
   Card car2;
 
   while (playing) {
-    car1 = hand1.gameTurnMin(handB);
+    car1 = hand1.gameTurnMin(hand2);
     if (car1.getValue() != 0) {
       cout << "Alice picked matching card ";
       car1.print();
     }
-    car2 = hand2.gameTurnMax(handA);
+    car2 = hand2.gameTurnMax(hand1);
     if (car2.getValue() != 0) {
       cout << "Bob picked matching card ";
       car2.print();
@@ -90,10 +90,10 @@ int main(int argv, char** argc){
 
   cout << endl;
   cout << "Alice's cards:" << endl;
-  handA.printInOrder();
+  hand1.printInOrder();
   cout << endl;
   cout << "Bob's cards:" << endl;
-  handB.printInOrder();
+  hand2.printInOrder();
   
   return 0;
 }
