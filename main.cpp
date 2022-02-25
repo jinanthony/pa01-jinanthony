@@ -21,8 +21,8 @@ int main(int argv, char** argc){
   }
 
   // Makes a BST of cards to represent each player's hands
-  BST handA;
-  BST handB;
+  BST hand1;
+  BST hand2;
   string suit;
   string value;
   int val;
@@ -44,7 +44,7 @@ int main(int argv, char** argc){
       val = stoi(value);
 
     Card car(suit, val);
-    handA.insert(car);
+    hand1.insert(car);
   }
   cardFile1.close();
 
@@ -64,58 +64,30 @@ int main(int argv, char** argc){
       val = stoi(value);
 
     Card car(suit, val);
-    handB.insert(car);
+    hand2.insert(car);
   }
   cardFile2.close();
   
-  // Actual game
-  //int turn = 0;
-  bool play = true;
+  bool playing = true;
   Card car1;
   Card car2;
 
-  /*
-  while (play) {
-    if (turn % 2 == 0) {
-      car = handA.gameTurnMin(handB);
-      if (car.getValue() != 0) {
-        cout << "Alice picked matching card ";
-        car.print();
-      }
-      else {
-        play = false;
-      }
-    }
-    else {
-      car = handB.gameTurnMax(handA);
-      if (car.getValue() != 0) {
-        cout << "Bob picked matching card ";
-        car.print();
-      }
-      else {
-        play = false;
-      }
-    }
-    turn++;
-  }
-  */
-
-  while (play) {
-    car1 = handA.gameTurnMin(handB);
+  while (playing) {
+    car1 = hand1.gameTurnMin(handB);
     if (car1.getValue() != 0) {
       cout << "Alice picked matching card ";
       car1.print();
     }
-    car2 = handB.gameTurnMax(handA);
+    car2 = hand2.gameTurnMax(handA);
     if (car2.getValue() != 0) {
       cout << "Bob picked matching card ";
       car2.print();
     }  
     if (car1.getValue() == 0 && car2.getValue() == 0) {
-      play = false;
+      playing = false;
     }
   }
-  // Game ends, print hands
+
   cout << endl;
   cout << "Alice's cards:" << endl;
   handA.printInOrder();

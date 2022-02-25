@@ -162,7 +162,6 @@ bool BST::ifCardFound(Card car) {
     return true;
 }
 
-// pred and succ may have some edge case errors
 BST::Node* BST::predecessorNode(Card car) {
     Node* n = findNode(car, root);
     if (!n) {
